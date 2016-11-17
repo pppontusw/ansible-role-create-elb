@@ -1,0 +1,23 @@
+- local_action:
+    module: ec2_elb_lb
+    name: "{{app_name}}-ELB"
+    security_group_ids: ['{{elb_security_group}}']
+    state: present
+    region: "{{elb_region}}"
+    subnets:
+      - "{{elb_subnet}}"
+    listeners:
+      - protocol: http # options are http, https, ssl, tcp
+        load_balancer_port: 80
+        instance_port: 80
+        proxy_protocol: True
+      - protocol: https
+        load_balancer_port: 443
+        instance_protocol: http # optional, defaults to value of protocol setting
+        instance_port: 80
+        # ssl certificate required for https or ssl
+        ssl_certificate_id: "{{elb_certificate_id}}"
+  register: elb
+
+- debug:
+    msg: "{{elb}}"
