@@ -5,7 +5,8 @@
     state: present
     region: "{{elb_region}}"
     subnets:
-      - "{{elb_subnet}}"
+      - "{{item}}"
+    with_items: "{{elb_subnet}}"
     listeners:
       - protocol: http # options are http, https, ssl, tcp
         load_balancer_port: 80
