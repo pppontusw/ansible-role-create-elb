@@ -1,5 +1,6 @@
 app_name: Test
-elb_subnet: "{{ec2_subnet}}"
+elb_subnet: 
+  - "{{ec2_subnet}}"
 elb_security_group: "{{ec2_security_group}}"
 elb_certificate_id: "arn:aws:certificate_id"
 elb_region: "{{ec2_region}}"

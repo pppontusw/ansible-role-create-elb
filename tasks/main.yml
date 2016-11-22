@@ -4,8 +4,7 @@
     security_group_ids: ['{{elb_security_group}}']
     state: present
     region: "{{elb_region}}"
-    subnets:
-      - "{{elb_subnet}}"
+    subnets: "{{elb_subnet}}"
     listeners:
       - protocol: http # options are http, https, ssl, tcp
         load_balancer_port: 80
