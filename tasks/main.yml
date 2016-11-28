@@ -5,17 +5,7 @@
     state: present
     region: "{{elb_region}}"
     subnets: "{{elb_subnet}}"
-    listeners:
-      - protocol: http # options are http, https, ssl, tcp
-        load_balancer_port: 80
-        instance_port: 80
-        proxy_protocol: True
-      - protocol: https
-        load_balancer_port: 443
-        instance_protocol: http # optional, defaults to value of protocol setting
-        instance_port: 80
-        # ssl certificate required for https or ssl
-        ssl_certificate_id: "{{elb_certificate_id}}"
+    listeners: "{{elb_listeners}}"
   register: elb
 
 - debug:
